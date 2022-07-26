@@ -75,7 +75,7 @@ def api_create_news(user) -> dict:
     if flag not in ['0','1','2']:
         flag = 0
 
-    news = NewsModel(title=title, content=content, datetime=datetime.now(), flag=flag, created_by=user.id, update_by=user.id)
+    news = NewsModel(title=title, content=content, datetime=datetime.now(), flag=flag, created_by=user.id, updated_by=user.id)
     db.session.add(news)
     db.session.commit()
 
