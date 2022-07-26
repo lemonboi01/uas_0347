@@ -1,0 +1,61 @@
+{%- extends "client/base.html" -%}
+{%- block content -%}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0"> Users </h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User </li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="card p-3 w-100">
+                <div class="card-body">
+                    <h5 class="card-title"> {{ card_title }} </h5>
+                    <br><br>
+                    <form method="post">
+                        <div class="form-group">
+                            <label for=""> Name </label>
+                            <input type="text" name="name" placeholder="Masukkan Nama" class="form-control" required value="{% if user %}{{ user.name }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Username </label>
+                            <input type="text" name="username" placeholder="Masukkan Username" class="form-control" required value="{% if user %}{{user.username }}{% endif %}">
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Password </label>
+                            <input type="password" name="password" placeholder="Masukkan Password" class="form-control" {% if not user %} required {% endif %}>
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Permission </label>
+                            <div>
+                                <input type="checkbox" name="permission" value="read" {% if user %} {% if user.read_key %} checked {% endif %} {% endif %}> Read Key &nbsp; 
+                                <input type="checkbox" name="permission" value="write" {% if user %} {% if user.write_key %} checked {% endif %} {% endif %}> Write Key
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" style="float: right"> {% if user %} Edit {% else %} Tambah Data {% endif %} </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+</div>
+{%- endblock -%}
